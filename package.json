@@ -1,0 +1,47 @@
+{
+	"name": "simple-status-page",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"deps": "npm ci && cd frontend-vite && npm ci && cd ..",
+		"build": "tsc",
+		"buildall": "tsc && cd frontend-vite && npm run build && cd ..",
+		"watch": "tsc && concurrently \"tsc -w\" \"nodemon dist\"",
+		"start": "NODE_ENV=production node ./dist/server.js",
+		"test": "jest",
+    "prettier:server": "prettier --write \"src/**/*.ts\"",
+    "prettier:frontend": "prettier --write \"frontend-vite/**/*.tsx\"",
+    "prettier:all": "npm run prettier:server && npm run prettier:frontend"
+	},
+	"keywords": [],
+	"author": "Florian Brede",
+	"license": "MIT",
+	"dependencies": {
+		"@koa/cors": "^5.0.0",
+		"@koa/router": "^12.0.1",
+		"axios": "^1.6.2",
+		"better-sqlite3": "^9.2.2",
+		"console-stamp": "^3.1.2",
+		"js-yaml": "^4.1.0",
+		"koa": "^2.14.2",
+		"koa-bodyparser": "^4.4.1",
+		"koa-static": "^5.0.0",
+		"nodemailer": "^6.9.7",
+		"ts-node": "^10.9.2",
+		"validator": "^13.11.0"
+	},
+	"devDependencies": {
+		"@types/better-sqlite3": "^7.6.8",
+		"@types/console-stamp": "^3.0.0",
+		"@types/js-yaml": "^4.0.9",
+		"@types/koa": "^2.13.12",
+		"@types/koa__cors": "^4.0.3",
+		"@types/koa__router": "^12.0.4",
+		"@types/koa-bodyparser": "^4.3.12",
+		"@types/koa-static": "^4.0.4",
+		"@types/nodemailer": "^6.4.14",
+		"@types/validator": "^13.11.7",
+		"prettier": "^3.2.2"
+	}
+}

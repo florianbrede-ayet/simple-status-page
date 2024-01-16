@@ -1,0 +1,70 @@
+public:
+  favicon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🪲</text></svg>'
+  logo: '<svg xmlns="http://www.w3.org/2000/svg" width="920" height="142" viewBox="0 0 920 142" version="1.1"></svg>'
+  companyName: "Example Company"
+  refreshInterval: 900
+  basedomain: "http://localhost:3000"
+
+salt: "XXXXX" # used to hash confirmation mail links, generate with uuidgen
+
+database:
+  path: "data/database.sqlite" # will be created on first startup
+
+smtp: # smtp configuration for subscription confirmation mails and incident notifications
+  host: "smtp.example.com"
+  from: "status@example.com"
+  port: 25
+  username: "smtp_user"
+  password: "smtp_password"
+
+groups: # list of groups shown on the status page
+  - name: "Endpoints"
+    monitors: # list of monitor ids
+      - 1
+  - name: "Infrastructure"
+    monitors:
+      - 2
+      - 3
+
+monitors: # list of monitors
+  - name: "Website"
+    id: 1 # must be unique
+    uuid: "not-required" # optional for http monitors
+    description: null # optional
+    visible: true # a monitor that is not visible will not be shown on the status page and does not create / resolve incidents
+    type: "http" # http or api
+    url: "http://52.34.219.76" # http endpoint to check
+    regexp: ".*nginx.*" # regexp to check for in response body
+    validStatusCodes: # optional, default: 200
+      - 200
+      - 404
+    checkInterval: 60000 # in ms
+    retries: 3 # number of retries before tracking monitor_check "down"
+    timeoutDownMs: 5000 # in ms
+    timeoutDegradationMs: 1000 # in ms
+    incidents: # optional
+      down: # optional
+        createAfter: 2 # number of "down" checks before creating incident
+        resolveAfter: 2 # number of "up" or "degraded" checks before resolving incident
+      degraded: # optional
+        createAfter: 5 # number of "degraded" checks before creating incident
+        resolveAfter: 5 # number of "up" checks before resolving incident
+
+  - name: "Backend"
+    id: 2
+    uuid: "96add970-8656-4615-af11-6660e7839ba8" # required for api monitors, must be unique (can be generated with uuidgen)
+    # the endpoint to check is: http://basedomain/api/monitor/96add970-8656-4615-af11-6660e7839ba8?status=up|down|degraded&value=xxx
+    # the numeric value parameter is optional and will be stored in the database for each check, but currently not used
+    description: null # optional
+    visible: true # a monitor that is not visible will not be shown on the status page and does not create / resolve incidents
+    type: "api" # http or api
+    checkInterval: 120000 # an api monitor will increment its retries if last call to the endpoint was more than checkInterval ms ago
+    retries: 2 # number of retries before tracking monitor_check "down"
+    uptimeWording: "availability" # optional, default: 'uptime'
+    incidents:
+      down:
+        createAfter: 3
+        resolveAfter: 2
+      degraded:
+        createAfter: 10
+        resolveAfter: 5

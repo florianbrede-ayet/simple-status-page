@@ -1,0 +1,7 @@
+data/config.yaml
+data/*.sqlite
+node_modules
+dist
+frontend-vite/node_modules
+frontend-vite/dist
+.vscode
