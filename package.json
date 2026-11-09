@@ -10,9 +10,9 @@
 		"watch": "tsc && concurrently \"tsc -w\" \"nodemon dist\"",
 		"start": "NODE_ENV=production node ./dist/server.js",
 		"test": "jest",
-    "prettier:server": "prettier --write \"src/**/*.ts\"",
-    "prettier:frontend": "prettier --write \"frontend-vite/**/*.tsx\"",
-    "prettier:all": "npm run prettier:server && npm run prettier:frontend"
+		"prettier:server": "prettier --write \"src/**/*.ts\"",
+		"prettier:frontend": "prettier --write \"frontend-vite/**/*.tsx\"",
+		"prettier:all": "npm run prettier:server && npm run prettier:frontend"
 	},
 	"keywords": [],
 	"author": "Florian Brede",
@@ -21,7 +21,7 @@
 		"@koa/cors": "^5.0.0",
 		"@koa/router": "^12.0.1",
 		"axios": "^1.6.2",
-		"better-sqlite3": "^9.2.2",
+		"better-sqlite3": "^11.10.0",
 		"console-stamp": "^3.1.2",
 		"js-yaml": "^4.1.0",
 		"koa": "^2.14.2",
@@ -33,7 +33,6 @@
 	},
 	"devDependencies": {
 		"@types/better-sqlite3": "^7.6.8",
-		"@types/console-stamp": "^3.0.0",
 		"@types/js-yaml": "^4.0.9",
 		"@types/koa": "^2.13.12",
 		"@types/koa__cors": "^4.0.3",
