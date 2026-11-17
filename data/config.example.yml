@@ -41,7 +41,7 @@ monitors: # list of monitors
     checkInterval: 60000 # in ms
     retries: 3 # number of retries before tracking monitor_check "down"
     timeoutDownMs: 5000 # in ms
-    timeoutDegradationMs: 1000 # in ms
+    timeoutDegradedMs: 1000 # in ms
     incidents: # optional
       down: # optional
         createAfter: 2 # number of "down" checks before creating incident

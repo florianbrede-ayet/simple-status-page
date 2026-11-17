@@ -108,7 +108,7 @@ parameters:
     - `checkInterval`: Time interval (in milliseconds) for performing checks.
     - `retries`: Number of retries before a check is considered failed.
     - `timeoutDownMs`: HTTP request timeout (in milliseconds) for a down status.
-    - `timeoutDegradationMs`: HTTP request duration (in milliseconds) for a degraded status.
+    - `timeoutDegradedMs`: HTTP request duration (in milliseconds) for a degraded status.
     - `incidents`:
       - `down`: Settings for down status incidents.
       - `degraded`: Settings for degraded status incidents.
